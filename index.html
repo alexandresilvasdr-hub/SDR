@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Studio Designer Record</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cor-primaria: #24292F;
+      --cor-secundaria: #F5F5F7;
+      --cor-accent: #00A6FB;
+      --cor-hover: #0197D7;
+    }
+    body {
+      margin:0; 
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: var(--cor-secundaria);
+    }
+    header {
+      background: var(--cor-primaria);
+      color: #fff;
+      padding: 24px 0 16px;
+      text-align: center;
+    }
+    nav {
+      margin-top: 18px;
+    }
+    nav a {
+      color: #fff;
+      margin: 0 16px;
+      text-decoration: none;
+      font-size: 1.1em;
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+      transition: border 0.2s;
+    }
+    nav a.active, nav a:hover {
+      border-bottom: 2px solid var(--cor-accent);
+      color: var(--cor-accent);
+    }
+    main {
+      margin: 32px auto;
+      max-width: 570px;
+      background: #fff;
+      border-radius: 12px;
+      padding: 40px 28px;
+      box-shadow: 0 4px 24px rgba(40,80,115,0.07);
+      min-height: 300px;
+    }
+    h1 {
+      letter-spacing: 0.035em;
+      font-size: 2.2em;
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: 1.23em;
+      margin-bottom: 27px;
+      color: var(--cor-primaria);
+    }
+    .upload-container {
+      border: 2px dashed var(--cor-accent);
+      border-radius: 9px;
+      padding: 28px;
+      text-align: center;
+      background: #F0F8FE;
+    }
+    .upload-container input[type="file"] {
+      margin: 12px 0 18px;
+    }
+    button, input[type="submit"] {
+      background: var(--cor-accent);
+      color: #fff;
+      border: none;
+      padding: 10px 28px;
+      border-radius: 6px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 12px;
+    }
+    button:hover, input[type="submit"]:hover {
+      background: var(--cor-hover);
+    }
+    .contact-info {
+      margin: 22px 0 0 0;
+      background: #F0F8FE;
+      border-radius: 9px;
+      padding: 16px 23px;
+      font-size: 1.1em;
+      color: #222;
+      border: 1px solid var(--cor-accent);
+      line-height: 1.7;
+      word-break: break-all;
+    }
+    label {
+      display: block;
+      margin-top: 12px;
+      margin-bottom: 8px;
+      color: var(--cor-accent);
+      font-weight: 500;
+    }
+    .footer {
+      text-align: center;
+      padding: 18px 0 12px;
+      background: var(--cor-primaria);
+      color: #fff;
+      margin-top: 50px;
+      font-size: 0.97em;
+    }
+    @media (max-width:650px){
+      main{ padding:18px 5vw; }
+    }
+  </style>
+  <script>
+    function showSection(sectionId) {
+      document.querySelectorAll('.section').forEach(s => s.style.display='none');
+      document.getElementById(sectionId).style.display = 'block';
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      document.querySelector('nav a[href="#'+sectionId+'"]').classList.add('active');
+    }
+    window.onload = function() {
+      // Default is Home/File upload
+      showSection('home');
+      document.querySelectorAll('nav a').forEach(a => {
+        a.onclick=function(e){
+          e.preventDefault();
+          showSection(this.getAttribute('href').replace('#',''));
+        }
+      });
+    };
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Studio Designer Record</h1>
+    <nav>
+      <a href="#home" class="active">Início</a>
+      <a href="#arquivos">Arquivos</a>
+      <a href="#contatos">Contato</a>
+    </nav>
+  </header>
+  <main>
+    <!-- Home/upload -->
+    <section id="home" class="section">
+      <h2>Armazene suas Fotos, Programas e Vídeos</h2>
+      <div class="upload-container">
+        <form>
+          <label for="file">Selecione arquivos para enviar:</label>
+          <input type="file" id="file" name="file" multiple accept="image/*,video/*,.exe,.zip,.rar,.pdf,.doc,.docx" disabled>
+          <br>
+          <button type="button" disabled>Enviar Arquivos</button>
+          <br><br>
+          <small style="color:#0170ba;opacity:.9">
+            <b>Aviso:</b> Esta é uma demonstração visual.<br>
+            Para enviar e armazenar arquivos, converse com o desenvolvedor para ter a versão completa.
+          </small>
+        </form>
+      </div>
+    </section>
+    <!-- Arquivos/demonstração visual -->
+    <section id="arquivos" class="section" style="display:none">
+      <h2>Galeria de Arquivos</h2>
+      <div class="upload-container" style="min-height:105px;">
+        <div style="text-align:left;">
+          <b>Fotos:</b>
+          <ul>
+            <li><img src="https://picsum.photos/seed/1/68/48" alt="foto1"> Foto viagem.jpg</li>
+            <li><img src="https://picsum.photos/seed/2/68/48" alt="foto2"> Evento.png</li>
+          </ul>
+          <b>Programas:</b>
+          <ul>
+            <li><svg width="18" height="18" style="vertical-align: middle;"><rect width="18" height="18" rx="4" style="fill:#afb4ba"/></svg> Instalador.zip</li>
+          </ul>
+          <b>Vídeos:</b>
+          <ul>
+            <li><svg width="18" height="18" style="vertical-align: middle;"><rect width="18" height="18" rx="4" style="fill:#7cc1fa"/></svg> Apresentacao.mp4</li>
+          </ul>
+        </div>
+        <small style="color:#0170ba;opacity:.90">
+          <br>Esta é uma listagem ilustrativa. <br>Na versão completa, seus arquivos ficarão aqui.
+        </small>
+      </div>
+    </section>
+    <!-- Contato -->
+    <section id="contatos" class="section" style="display:none">
+      <h2>E
